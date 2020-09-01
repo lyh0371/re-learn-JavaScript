@@ -10,7 +10,6 @@ const arry = [1, 2, 3, 4];
 
 Array.prototype.myMap = function (fn) {
   let temp = [];
-  console.log(fn(1));
   for (let i = 0; i < this.length; i++) {
     // console.log();
     let result = fn(this[i]);
@@ -24,11 +23,8 @@ Array.prototype.myMap = function (fn) {
 // 所以我们的myMap最终版本为
 Array.prototype.myMap = function (fn, ctx) {
   let temp = [];
-  console.log(fn(1));
   for (let i = 0; i < this.length; i++) {
-    // console.log();
     let result = fn.call(ctx, this[i]);
-
     temp.push(result);
   }
   return temp;
