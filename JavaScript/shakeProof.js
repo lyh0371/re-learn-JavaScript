@@ -1,3 +1,5 @@
+// js 实现防抖
+
 function shakeproof(fn, time) {
   let flag = true;
   let timer;
