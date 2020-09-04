@@ -21,6 +21,7 @@ function test(arg) {
 const Test = shakeproof(test, 2000);
 
 // 模拟点击事件
+
 setInterval(() => {
   console.log("我执行了");
   Test("hah");
