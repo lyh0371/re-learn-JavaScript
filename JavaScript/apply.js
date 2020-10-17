@@ -6,6 +6,7 @@ const info = {
   age: 100,
 };
 function Dome(age) {
+  console.log(this);
   this.age = age || windowage;
   return this.age;
 }

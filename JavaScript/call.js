@@ -7,7 +7,14 @@
  *
 主要思路
 
-1. 将函数设置为对象的属性  这个是重点 ：如
+1. 将函数设置为对象的属性  这个是重点, ：如
+
+const obj = {};
+function fn() {
+  console.log(this);
+}
+fn();
+fn.call(obj);  // 想要改变fn中this的指向，就必须把fn作为obj的属性，这个时候，当我们在fn中使用
 
 function mydome() {
  this.name = "码不停息";
@@ -91,22 +98,32 @@ const info = {
   age: 100,
 };
 function Dome(age) {
-  this.age = age || windowage;
-  return this.age
+  this.age = this.age || windowage;
+  return this.age;
 }
 Function.prototype.myCall = function () {
-  let [ctx, ...args] = [...arguments]
+  let [ctx, ...args] = [...arguments];
   try {
-    ctx = Object(ctx) || window
+    ctx = Object(ctx) || window;
   } catch (error) {
-    ctx = global
+    ctx = global;
   }
-  const ID = Symbol()
+  const ID = Symbol();
   ctx[ID] = this;
   const res = ctx[ID](...args);
-  delete ctx[ID]
-  return res
-}
+  delete ctx[ID];
+  return res;
+};
 
-const a = Dome.myCall()
-console.log(a)
+const a = Dome.myCall(info);
+console.log(a);
+
+// const obj = {};
+
+// function fn() {
+//   console.log(this);
+// }
+
+// fn();
+
+// fn.call(obj);
