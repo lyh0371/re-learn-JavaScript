@@ -1,4 +1,4 @@
-// 异步处理的实现版本
+// 异步处理的实现版本 基于观察模式实现
 class myPromise {
   constructor(fn) {
     this.status = "pending"; // 定义初始值状态

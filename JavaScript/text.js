@@ -1,14 +1,27 @@
-function Pre() {
-  console.log(1);
+// const Pre = new Promise((res, req) => {
+//   a + b;
+//   res(11);
+// });
+
+// Pre.catch((val) => {
+//   console.log("val", val);
+// });
+
+function* Pre() {
+  a + b;
+  console.log(11);
+  yield "name";
 }
+const p = Pre();
+p.throw((item) => {
+  console.log("err", item);
+});
+// const p = new Promise((req, res) => {
+//   setTimeout(() => {
+//     req(2);
+//   }, 100);
+// });
 
-const pre = new Pre();
-Pre.prototype.say = function () {};
-
-pre.name = "lyh";
-
-// console.log(pre.);
-// console.log(Pre.prototype.isPrototypeOf(pre));
-// console.log(Pre.prototype);
-
-// console.log(pre.constructor === Pre);
+// p.then((val) => {
+//   console.log(val);
+// });
