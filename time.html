@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        <span id="shi"></span>
+    </div>
+    <script>
+        let countdown = 60*10; // s 服务器返回的倒计时剩余时间
+        let countIndex = 1; // 倒计时任务执行次数
+        const timeout = 1000; // 触发倒计时任务的时间间隙
+        const startTime = new Date().getTime();
+        const shi = document.getElementById('shi')
+        let set = null
+        set =  setInterval(()=>{
+            if(Math.round(new Date() / 1000) >= 1604370000){
+                startCountdown(timeout);
+                if(set){
+                    clearInterval(set)
+                }
+            }
+        },10)
+        function startCountdown(interval) {
+            if(set){
+                clearInterval(set)
+            }
+            secondsFormat(countdown)
+            if(countdown <=0){
+                // 定时结束了
+                const d = new Date()
+                console.log(d, d.getSeconds());
+                return false
+            }
+            setTimeout(() => {
+                const endTime = new Date().getTime();
+                // 偏差值
+                const deviation = endTime - (startTime + countIndex * timeout);
+                console.log(`${countIndex}: 偏差${deviation}ms`);
+                countIndex++;
+                countdown--
+                // 下一次倒计时
+                startCountdown(timeout - deviation);
+            }, interval);
+        }
+
+        
+        // 时间转化
+        function secondsFormat( s ) { 
+            var day = Math.floor( s/ (24*3600) ); // Math.floor()向下取整 
+            var hour = Math.floor( (s - day*24*3600) / 3600); 
+            var minute = Math.floor( (s - day*24*3600 - hour*3600) /60 ); 
+            var second = s - day*24*3600 - hour*3600 - minute*60; 
+            var ok = day + "天"  + hour + "时" + minute + "分" + second + "秒"
+            // console.log(shi);
+            shi.innerHTML = ok
+            return day + "天"  + hour + "时" + minute + "分" + second + "秒"; 
+        }
+    </script>
+</body>
+</html>

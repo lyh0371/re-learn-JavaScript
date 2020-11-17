@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+        <span id="shi"></span>
+        <span id="fen"></span>
+        <span id="miao"></span>
+    </div>
+    <script>
+        function _CountDownLoop() {
+            var currStemp = new Date();
+            currStemp = new Date(currStemp.getTime() + this.offset);
+            //如果结束时间戳减去当前时间时间戳小于等于0则设置倒计时结束标识为true
+            if (this.endStemp.getTime() - currStemp.getTime() <= 0) {
+            this.isEnd = true;
+            }
+            //如果结束则调用结束回调
+            if (this.isEnd === true) {
+            // console.log('countdown end');
+            this.endcallback.apply(this, [this.endurl]);
+            } else {
+            this._render(currStemp);
+            var that = this;
+            requestAnimationFrame(function() {
+                that._CountDownLoop();
+            });
+            }
+        }
+    </script>
+</body>
+</html>
